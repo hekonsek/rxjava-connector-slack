@@ -12,7 +12,7 @@
     <groupId>com.github.hekonsek</groupId>
     <artifactId>rxjava-connector-slack</artifactId>
     <name>${project.artifactId}</name>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.1</version>
 
     <properties>
         <!-- General project settings -->
@@ -122,7 +122,7 @@
                         <id>enforce</id>
                         <configuration>
                             <rules>
-                                <requireUpperBoundDeps/>
+                                <requireUpperBoundDeps />
                             </rules>
                         </configuration>
                         <goals>
@@ -262,7 +262,7 @@
         <connection>scm:git:git@github.com:hekonsek/rxjava-connector-slack.git</connection>
         <developerConnection>scm:git:git@github.com:hekonsek/rxjava-connector-slack.git</developerConnection>
         <url>git@github.com:hekonsek/rxjava-connector-slack.git</url>
-        <tag>HEAD</tag>
+        <tag>rxjava-connector-slack-0.1</tag>
     </scm>
 
     <distributionManagement>
