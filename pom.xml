@@ -234,8 +234,8 @@
 
     <!-- Required by Sonatype release -->
 
-    <description>rxjava-connector-http</description>
-    <url>https://github.com/hekonsek/rxjava-connector-http</url>
+    <description>rxjava-connector-slack</description>
+    <url>https://github.com/hekonsek/rxjava-connector-slack</url>
 
     <developers>
         <developer>
@@ -245,9 +245,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git@github.com:hekonsek/rxjava-connector-http.git</connection>
-        <developerConnection>scm:git:git@github.com:hekonsek/rxjava-connector-http.git</developerConnection>
-        <url>git@github.com:hekonsek/rxjava-connector-http.git</url>
+        <connection>scm:git:git@github.com:hekonsek/rxjava-connector-slack.git</connection>
+        <developerConnection>scm:git:git@github.com:hekonsek/rxjava-connector-slack.git</developerConnection>
+        <url>git@github.com:hekonsek/rxjava-connector-slack.git</url>
         <tag>HEAD</tag>
     </scm>
 
