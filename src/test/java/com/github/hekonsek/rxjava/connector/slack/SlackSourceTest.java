@@ -17,6 +17,7 @@
 package com.github.hekonsek.rxjava.connector.slack;
 
 import com.github.hekonsek.rxjava.event.Headers;
+import com.google.common.collect.ImmutableList;
 import io.vertx.ext.unit.TestContext;
 import io.vertx.ext.unit.junit.VertxUnitRunner;
 import org.junit.BeforeClass;
@@ -41,7 +42,13 @@ public class SlackSourceTest {
     public void shouldSendEcho(TestContext testContext) {
         testContext.async();
         new SlackSource(token, channel).build().
-                subscribe( e -> Headers.responseCallback(e).get().respond(e.payload().text()));
+                subscribe( e -> Headers.responseCallback(e).get().respond(
+                        new SlackTable("Response you wanted:", ImmutableList.of("foo", "bar"), ImmutableList.of(
+                                ImmutableList.of("a", "b"),
+                                ImmutableList.of("c", "d"),
+                                ImmutableList.of("e", "f")
+                        ))
+                ));
     }
 
 }
