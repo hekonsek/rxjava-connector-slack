@@ -21,8 +21,11 @@
         <maven.compiler.source>1.8</maven.compiler.source>
 
         <!-- Dependencies versions -->
-        <assertj.version>3.6.2</assertj.version>
+        <assertj.version>3.8.0</assertj.version>
         <junit.version>4.12</junit.version>
+        <rxjava.version>2.1.7</rxjava.version>
+        <rxjava-event.version>0.6</rxjava-event.version>
+        <slf4j.version>1.7.25</slf4j.version>
         <vertx.version>3.5.0</vertx.version>
 
         <!-- Plugins versions -->
@@ -34,21 +37,31 @@
         <nexus-staging-maven-plugin.version>1.6.5</nexus-staging-maven-plugin.version>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <dependency>
             <groupId>com.github.hekonsek</groupId>
             <artifactId>rxjava-event</artifactId>
-            <version>0.6</version>
-        </dependency>
-        <dependency>
-            <groupId>io.vertx</groupId>
-            <artifactId>vertx-rx-java2</artifactId>
-            <version>${vertx.version}</version>
+            <version>${rxjava-event.version}</version>
         </dependency>
         <dependency>
             <groupId>com.ullink.slack</groupId>
             <artifactId>simpleslackapi</artifactId>
             <version>1.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.reactivex.rxjava2</groupId>
+            <artifactId>rxjava</artifactId>
+            <version>${rxjava.version}</version>
         </dependency>
 
         <!-- Testing -->
