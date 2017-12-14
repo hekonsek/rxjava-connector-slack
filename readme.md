@@ -22,9 +22,14 @@ This is how you can create "echo" simple Slack bot responding to all the message
 texts of those arriving messages:
 
 ```
-String botToken = ...;
-String channelId = ...;
-new SlackSource(botToken, channelId).build().
+import static com.github.hekonsek.rxjava.connector.slack.SlackSource.slackSource;
+import static com.github.hekonsek.rxjava.event.Headers.responseCallback;
+
+...
+
+String botToken = ...
+String channelId = ...
+slackSource(botToken, channelId).build().
   subscribe(event -> responseCallback(event).get().respond(event.payload().text()));
 ```
 

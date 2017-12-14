@@ -1,54 +1,36 @@
-/**
- * Licensed to the RxJava Connector HTTP under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.github.hekonsek.rxjava.connector.slack;
 
-import com.github.hekonsek.rxjava.event.Headers;
-import com.google.common.collect.ImmutableList;
-import io.vertx.ext.unit.TestContext;
-import io.vertx.ext.unit.junit.VertxUnitRunner;
-import org.junit.BeforeClass;
+import com.ullink.slack.simpleslackapi.SlackSession;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
-import static org.junit.Assume.assumeTrue;
+import java.net.ConnectException;
 
-@RunWith(VertxUnitRunner.class)
+import static com.github.hekonsek.rxjava.connector.slack.SlackSource.slackSource;
+import static com.github.hekonsek.rxjava.event.Events.event;
+import static io.reactivex.Observable.just;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+
 public class SlackSourceTest {
 
-    static String token = System.getenv("SLACK_TOKEN");
+    SlackSession session = mock(SlackSession.class);
 
-    static String channel = System.getenv("SLACK_CHANNEL");
-
-    @BeforeClass
-    public static void beforeClass() {
-        assumeTrue(token != null && channel != null);
+    @Test
+    public void shouldHandleSlackConnectionError() {
+        String text = slackSource("token", "channel").build().
+                onErrorResumeNext(e -> {
+                    assertThat(e).isInstanceOf(ConnectException.class);
+                    return just(event(new SlackMessage("foo")));
+                }).blockingFirst().payload().text();
+        assertThat(text).isEqualTo("foo");
     }
 
     @Test
-    public void shouldSendEcho(TestContext testContext) {
-        testContext.async();
-        new SlackSource(token, channel).build().
-                subscribe( e -> Headers.responseCallback(e).get().respond(
-                        new SlackTable("Response you wanted:", ImmutableList.of("foo", "bar"), ImmutableList.of(
-                                ImmutableList.of("a", "b"),
-                                ImmutableList.of("c", "d"),
-                                ImmutableList.of("e", "f")
-                        ))
-                ));
+    public void shouldRegisterPostedMessageHandler() {
+        new SlackSource(session, "channel").build().subscribe();
+        verify(session).addMessagePostedListener(any());
     }
 
 }
