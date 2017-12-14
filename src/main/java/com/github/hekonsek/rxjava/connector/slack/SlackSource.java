@@ -60,8 +60,8 @@ public class SlackSource {
                         observable.onNext(event(headers, new SlackMessage(slackMessagePosted.getMessageContent())));
                     }
                 });
-            } catch (Exception t) {
-                observable.onError(t);
+            } catch (Exception e) {
+                observable.onError(e);
             }
         });
     }
