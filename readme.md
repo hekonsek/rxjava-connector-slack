@@ -1,6 +1,6 @@
 # RxJava Slack connector
 
-[![Version](https://img.shields.io/badge/RxJava%20Connector%20Slack-0.1-blue.svg)](https://github.com/hekonsek/rxjava-connector-slack/releases)
+[![Version](https://img.shields.io/badge/RxJava%20Connector%20Slack-0.2-blue.svg)](https://github.com/hekonsek/rxjava-connector-slack/releases)
 [![Build](https://api.travis-ci.org/hekonsek/rxjava-connector-slack.svg)](https://travis-ci.org/hekonsek/rxjava-connector-slack)
 [![Coverage](https://sonarcloud.io/api/badges/measure?key=com.github.hekonsek%3Arxjava-connector-slack&metric=coverage)](https://sonarcloud.io/component_measures?id=com.github.hekonsek%3Arxjava-connector-slack&metric=coverage)
 
@@ -13,7 +13,7 @@ In order to start using Vert.x Pipes add the following dependency to your Maven 
     <dependency>
       <groupId>com.github.hekonsek</groupId>
       <artifactId>rxjava-connector-slack</artifactId>
-      <version>0.1</version>
+      <version>0.2</version>
     </dependency>
 
 ## Usage
@@ -32,6 +32,26 @@ String channelId = ...
 slackSource(botToken, channelId).build().
   subscribe(event -> responseCallback(event).get().respond(event.payload().text()));
 ```
+
+You can also send response as a Slack table:
+
+```
+import static com.github.hekonsek.rxjava.connector.slack.SlackTable;
+import static com.github.hekonsek.rxjava.connector.slack.SlackSource.slackSource;
+import static com.github.hekonsek.rxjava.event.Headers.responseCallback;
+
+...
+
+String botToken = ...
+String channelId = ...
+slackSource(botToken, channelId).build().
+  subscribe(event -> {
+    SlackTable table = new SlackTable("Here is response:", asList("column1", "column2"), 
+      asList(asList("row1column1", "row1column2"), asList("row2column1", ""row2column2")));
+    responseCallback(event).get().respond(table)
+  });
+```
+
 
 ## License
 
