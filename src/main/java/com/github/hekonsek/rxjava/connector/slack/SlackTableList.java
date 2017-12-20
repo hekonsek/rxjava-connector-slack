@@ -16,17 +16,26 @@
  */
 package com.github.hekonsek.rxjava.connector.slack;
 
-import lombok.Data;
-
 import java.util.List;
+import java.util.Map;
 
-@Data
-public class SlackTable {
+public class SlackTableList {
 
     private final String title;
 
-    private final List<String> columns;
+    private final Map<String, List<Object>> items;
 
-    private final List<List<Object>> rows;
+    public SlackTableList(String title, Map<String, List<Object>> items) {
+        this.title = title;
+        this.items = items;
+    }
+
+    public String title() {
+        return title;
+    }
+
+    public Map<String, List<Object>> items() {
+        return items;
+    }
 
 }

@@ -25,14 +25,13 @@
         <commons-lang3.version>3.7</commons-lang3.version>
         <junit.version>4.12</junit.version>
         <lombok.version>1.16.18</lombok.version>
-        <rxjava.version>2.1.7</rxjava.version>
-        <rxjava-event.version>0.6</rxjava-event.version>
+        <rxjava-event.version>0.7</rxjava-event.version>
         <slf4j.version>1.7.25</slf4j.version>
         <vertx.version>3.5.0</vertx.version>
 
         <!-- Plugins versions -->
         <maven-enforcer-plugin.version>3.0.0-M1</maven-enforcer-plugin.version>
-        <maven-gpg-plugin.version>1.5</maven-gpg-plugin.version>
+        <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
         <maven-source-plugin.version>2.4</maven-source-plugin.version>
@@ -59,11 +58,6 @@
             <groupId>com.ullink.slack</groupId>
             <artifactId>simpleslackapi</artifactId>
             <version>1.2.0</version>
-        </dependency>
-        <dependency>
-            <groupId>io.reactivex.rxjava2</groupId>
-            <artifactId>rxjava</artifactId>
-            <version>${rxjava.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>

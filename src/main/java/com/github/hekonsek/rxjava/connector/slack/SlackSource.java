@@ -26,7 +26,7 @@ import java.util.Map;
 
 import static com.github.hekonsek.rxjava.event.Events.event;
 import static com.github.hekonsek.rxjava.event.Headers.ORIGINAL;
-import static com.github.hekonsek.rxjava.event.Headers.RESPONSE_CALLBACK;
+import static com.github.hekonsek.rxjava.event.Headers.REPLY_CALLBACK;
 import static com.ullink.slack.simpleslackapi.impl.SlackSessionFactory.createWebSocketSlackSession;
 
 public class SlackSource {
@@ -50,11 +50,11 @@ public class SlackSource {
             try {
                 session.connect();
                 SlackChannel channel = session.findChannelById(this.channel);
-                SlackResponseCallback responseCallback = new SlackResponseCallback(session, channel);
+                SlackReplyHandler responseCallback = new SlackReplyHandler(session, channel);
                 session.addMessagePostedListener((slackMessagePosted, slackSession) -> {
                     Map<String, Object> headers = ImmutableMap.of(
                             ORIGINAL, slackMessagePosted,
-                            RESPONSE_CALLBACK, responseCallback
+                            REPLY_CALLBACK, responseCallback
                     );
                     if(!slackMessagePosted.getUser().isBot() && slackMessagePosted.getChannel().getId().equals(this.channel)) {
                         observable.onNext(event(headers, new SlackMessage(slackMessagePosted.getMessageContent())));
