@@ -16,11 +16,8 @@
  */
 package com.github.hekonsek.rxjava.connector.slack;
 
-import lombok.Data;
-
 import java.util.List;
 
-@Data
 public class SlackTable {
 
     private final String title;
@@ -28,5 +25,23 @@ public class SlackTable {
     private final List<String> columns;
 
     private final List<List<Object>> rows;
+
+    public SlackTable(String title, List<String> columns, List<List<Object>> rows) {
+        this.title = title;
+        this.columns = columns;
+        this.rows = rows;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public List<String> getColumns() {
+        return columns;
+    }
+
+    public List<List<Object>> getRows() {
+        return rows;
+    }
 
 }
