@@ -12,7 +12,7 @@
     <groupId>com.github.hekonsek</groupId>
     <artifactId>rxjava-connector-slack</artifactId>
     <name>${project.artifactId}</name>
-    <version>0.3-SNAPSHOT</version>
+    <version>0.3</version>
 
     <properties>
         <!-- General project settings -->
@@ -238,7 +238,7 @@
         <connection>scm:git:git@github.com:hekonsek/rxjava-connector-slack.git</connection>
         <developerConnection>scm:git:git@github.com:hekonsek/rxjava-connector-slack.git</developerConnection>
         <url>git@github.com:hekonsek/rxjava-connector-slack.git</url>
-        <tag>HEAD</tag>
+        <tag>rxjava-connector-slack-0.3</tag>
     </scm>
 
     <distributionManagement>
