@@ -1,6 +1,6 @@
 # RxJava Slack connector
 
-[![Version](https://img.shields.io/badge/RxJava%20Connector%20Slack-0.2-blue.svg)](https://github.com/hekonsek/rxjava-connector-slack/releases)
+[![Version](https://img.shields.io/badge/RxJava%20Connector%20Slack-0.3-blue.svg)](https://github.com/hekonsek/rxjava-connector-slack/releases)
 [![Build](https://api.travis-ci.org/hekonsek/rxjava-connector-slack.svg)](https://travis-ci.org/hekonsek/rxjava-connector-slack)
 [![Coverage](https://sonarcloud.io/api/badges/measure?key=com.github.hekonsek%3Arxjava-connector-slack&metric=coverage)](https://sonarcloud.io/component_measures?id=com.github.hekonsek%3Arxjava-connector-slack&metric=coverage)
 
@@ -13,7 +13,7 @@ In order to start using RxJava Slack Connector add the following dependency to y
     <dependency>
       <groupId>com.github.hekonsek</groupId>
       <artifactId>rxjava-connector-slack</artifactId>
-      <version>0.2</version>
+      <version>0.3</version>
     </dependency>
 
 ## Usage
